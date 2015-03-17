@@ -37,21 +37,29 @@
 		}
 
 		if($baraja['primera']==-1){
-			$baraja['primera']=$seleccion;
-			$baraja=descubrir($baraja, $seleccion);
-			echo mostrarBaraja($baraja);
+			if(!estaDescubierta($baraja, $seleccion) || $seleccion==$baraja['primera'] || $seleccion==$baraja['segunda']){
+				$baraja['primera']=$seleccion;
+				$baraja=descubrir($baraja, $seleccion);
+				echo mostrarBaraja($baraja);
+			}else{
+				echo mostrarBaraja($baraja);
+			}
+
 		}else{			
 			if($baraja['cartas'][$baraja['primera']]==$baraja['cartas'][$seleccion]){
-				$baraja=descubrir($baraja, $seleccion);
-				$baraja['primera']=-1;
-				$baraja['segunda']=-1;		
-				echo mostrarBaraja($baraja);
-
+				
+					$baraja=descubrir($baraja, $seleccion);
+					$baraja['primera']=-1;
+					$baraja['segunda']=-1;		
+					echo mostrarBaraja($baraja);
+				
 			}else{
-				$baraja=descubrir($baraja,$seleccion);
-				$baraja['segunda']=$seleccion;
-				$baraja['fallo']=TRUE;			
-				echo mostrarBaraja($baraja);
+				
+					$baraja=descubrir($baraja,$seleccion);
+					$baraja['segunda']=$seleccion;
+					$baraja['fallo']=TRUE;			
+					echo mostrarBaraja($baraja);
+				
 			}
 		}	
 			
